@@ -532,4 +532,3 @@ float DRV_SPEED_LEVEL(u8 level)
 	
 	return speed;
 }
-
