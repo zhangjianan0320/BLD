@@ -476,9 +476,6 @@ void DRV_Motor_Control(MOTOR *motor)
 	}
 }
 
-
-
-
 void DRV_motor_deal(CONTROL *control)
 {
 	if(control->motor_x->operat == OPERAT)
@@ -535,4 +532,12 @@ float DRV_SPEED_LEVEL(u8 level)
 	
 	return speed;
 }
+
+
+
+
+
+
+
+
 
