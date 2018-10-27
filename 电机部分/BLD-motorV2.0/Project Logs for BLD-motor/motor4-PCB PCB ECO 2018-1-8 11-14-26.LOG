@@ -1,5 +1,0 @@
-Added Pin To Net: NetName=CLK_1302 Pin=U12-52
-Added Pin To Net: NetName=IO_1302 Pin=U12-53
-Added Pin To Net: NetName=CE_1302 Pin=U12-54
-Added Room: Name=motor-drive
-Added Room: Name=stm32-motor4
