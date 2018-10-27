@@ -218,23 +218,25 @@ void DRV_cmd_deal(CONTROL *control)
 	u8 deal_data[50] = {0};
 	u8 data_count = 0;
 	u8 offset = 0;       //用于计算处理数据的偏移位置
-	u8 send[50] = "OK";
+	u8 send[50] = {0};
 	u8 temp[20] = {0};
 	u8 acces = 0;				//计算加速度的中间变量
 	
 	if(DRV_queue_check())
 	{
 		do{
-				if(DRV_queue_pull(deal_data + data_count) == 0)
-				{
-					//没有数据时，直接舍弃退出
-					DRV_queue_delete_frame_count();
-						return;
-				}
-			}while(deal_data[data_count++] != FRAME_END);					//当检测到帧头时，退出循环
+			if(DRV_queue_pull(deal_data + data_count) == 0)
+			{
+				//没有数据时，直接舍弃退出
+				DRV_queue_delete_frame_count();
+					return;
+			}
+		}while(deal_data[data_count++] != FRAME_END);					//当检测到帧头时，退出循环
 		
 		DRV_queue_delete_frame_count();											//减少帧数量
-			
+		
+		memset(send,0,sizeof(send));
+		memcpy(send,"OK",2);
 		switch(deal_data[0])
 		{
 			case 'T':				//测试通信是否ok
