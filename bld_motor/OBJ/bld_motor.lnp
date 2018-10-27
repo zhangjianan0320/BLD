@@ -17,6 +17,6 @@
 "..\obj\stm32f4xx_tim.o"
 "..\obj\stm32f4xx_exti.o"
 --strict --scatter "..\OBJ\bld_motor.sct"
---summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "..\OBJ\bld_motor.map" -o ..\OBJ\bld_motor.axf

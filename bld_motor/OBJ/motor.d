@@ -41,3 +41,4 @@
 ..\obj\motor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\motor.o: ..\HARDWARE\switch\switch.h
 ..\obj\motor.o: ..\SYSTEM\delay\delay.h
+..\obj\motor.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

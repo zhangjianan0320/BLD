@@ -1,6 +1,7 @@
 #include "motor.h"
 #include "timer.h"
 #include "switch.h"
+#include "string.h"
 
 static CONTROL control;
 
@@ -446,9 +447,8 @@ void DRV_Motor_Control(MOTOR *motor)
 {
 	MOTOR_STATUS status;
 	MOTOR m_temp;
-	u8 i = 0;
 	
-	memcpy(m_temp,motor,sizeof(m_temp));
+	memcpy(&m_temp,motor,sizeof(m_temp));
 	
 	status = DRV_switch_judge(motor);
 	
