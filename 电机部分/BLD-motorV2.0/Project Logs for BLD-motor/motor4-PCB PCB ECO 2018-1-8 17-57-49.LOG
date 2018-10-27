@@ -1,0 +1,22 @@
+Removed Pin From Net: NetName=BREAK_OE1 Pin=U12-51
+Removed Pin From Net: NetName=BREAK_DIR1 Pin=U12-52
+Removed Pin From Net: NetName=BREAK_IN1 Pin=U12-81
+Removed Pin From Net: NetName=BREAK_IN2 Pin=U12-82
+Removed Pin From Net: NetName=BREAK_IN3 Pin=U12-83
+Removed Pin From Net: NetName=BREAK_IN4 Pin=U12-84
+Removed Pin From Net: NetName=BREAK_IN5 Pin=U12-85
+Removed Pin From Net: NetName=BREAK_IN6 Pin=U12-86
+Removed Pin From Net: NetName=BREAK_IN7 Pin=U12-87
+Removed Pin From Net: NetName=BREAK_IN8 Pin=U12-88
+Added Pin To Net: NetName=BREAK_DIR1 Pin=U12-51
+Added Pin To Net: NetName=BREAK_OE1 Pin=U12-52
+Added Pin To Net: NetName=BREAK_IN8 Pin=U12-81
+Added Pin To Net: NetName=BREAK_IN7 Pin=U12-82
+Added Pin To Net: NetName=BREAK_IN6 Pin=U12-83
+Added Pin To Net: NetName=BREAK_IN5 Pin=U12-84
+Added Pin To Net: NetName=BREAK_IN4 Pin=U12-85
+Added Pin To Net: NetName=BREAK_IN3 Pin=U12-86
+Added Pin To Net: NetName=BREAK_IN2 Pin=U12-87
+Added Pin To Net: NetName=BREAK_IN1 Pin=U12-88
+Added Room: Name=motor-drive
+Added Room: Name=stm32-motor4

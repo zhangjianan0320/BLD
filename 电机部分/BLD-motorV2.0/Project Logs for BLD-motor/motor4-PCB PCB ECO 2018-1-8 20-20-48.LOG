@@ -1,0 +1,11 @@
+Added Pin To Net: NetName=DGND Pin=C2-1
+Added Pin To Net: NetName=DGND Pin=C6-1
+Added Pin To Net: NetName=DGND Pin=C8-1
+Added Pin To Net: NetName=DGND Pin=C12-1
+Added Pin To Net: NetName=DGND Pin=C13-2
+Added Pin To Net: NetName=DGND Pin=U3-5
+Added Pin To Net: NetName=DGND Pin=U5-5
+Added Pin To Net: NetName=DGND Pin=U8-5
+Added Pin To Net: NetName=DGND Pin=U10-5
+Added Room: Name=motor-drive
+Added Room: Name=stm32-motor4

@@ -1,0 +1,11 @@
+Removed Pin From Net: NetName=DIR_1 Pin=U12-15
+Removed Pin From Net: NetName=DIR_2 Pin=U12-16
+Removed Pin From Net: NetName=DIR_3 Pin=U12-17
+Removed Pin From Net: NetName=DIR_4 Pin=U12-18
+Added Pin To Net: NetName=DIR_4 Pin=U12-15
+Added Pin To Net: NetName=DIR_3 Pin=U12-16
+Added Pin To Net: NetName=DIR_2 Pin=U12-17
+Added Pin To Net: NetName=DIR_1 Pin=U12-18
+Added Pin To Net: NetName=18B20 Pin=U12-98
+Added Room: Name=motor-drive
+Added Room: Name=stm32-motor4

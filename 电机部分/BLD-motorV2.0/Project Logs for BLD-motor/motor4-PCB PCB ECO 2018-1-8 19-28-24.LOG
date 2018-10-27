@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=PC3 Pin=U12-79
+Removed Pin From Net: NetName=BZ Pin=U12-80
+Removed Pin From Net: NetName=18B20 Pin=U12-98
+Added Pin To Net: NetName=BZ Pin=U12-79
+Added Pin To Net: NetName=18B20 Pin=U12-80
+Added Pin To Net: NetName=PC3 Pin=U12-98
+Added Member To Class: ClassName=stm32-motor4 Member=Component R93 10K
+Added Room: Name=motor-drive
+Added Room: Name=stm32-motor4

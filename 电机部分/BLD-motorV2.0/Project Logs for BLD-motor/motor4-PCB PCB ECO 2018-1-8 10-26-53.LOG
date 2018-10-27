@@ -1,0 +1,4 @@
+Change Component Footprint: Designator=PX1 Old Footprint=HDR1X5H New Footprint=HDR1X5
+Change Component Footprint: Designator=PZ3 Old Footprint=HDR1X5H New Footprint=HDR1X5
+Added Room: Name=motor-drive
+Added Room: Name=stm32-motor4

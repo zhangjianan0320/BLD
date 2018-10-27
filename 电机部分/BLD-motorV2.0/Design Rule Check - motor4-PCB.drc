@@ -1,0 +1,53 @@
+Protel Design System Design Rule Check
+PCB File : C:\Users\Administrator\Desktop\BLD-motorV2.0\motor4-PCB.PcbDoc
+Date     : 2018/7/18
+Time     : 21:47:31
+
+Processing Rule : Short-Circuit Constraint (Allowed=No) (All),(All)
+Rule Violations :0
+
+Processing Rule : Un-Routed Net Constraint ( (All) )
+Rule Violations :0
+
+Processing Rule : Clearance Constraint (Gap=6mil) (All),(All)
+Rule Violations :0
+
+Processing Rule : Power Plane Connect Rule(Relief Connect )(Expansion=20mil) (Conductor Width=10mil) (Air Gap=10mil) (Entries=4) (All)
+Rule Violations :0
+
+Processing Rule : Width Constraint (Min=10mil) (Max=50mil) (Preferred=10mil) (All)
+Rule Violations :0
+
+Processing Rule : Height Constraint (Min=0mil) (Max=1000mil) (Prefered=500mil) (All)
+Rule Violations :0
+
+Processing Rule : Hole Size Constraint (Min=1mil) (Max=100mil) (All)
+   Violation between Hole Size Constraint (126mil > 100mil) : Via (5530mil,3165mil) Top Layer to Bottom Layer
+   Violation between Hole Size Constraint (126mil > 100mil) : Via (5530mil,160mil) Top Layer to Bottom Layer
+   Violation between Hole Size Constraint (126mil > 100mil) : Via (120mil,160mil) Top Layer to Bottom Layer
+   Violation between Hole Size Constraint (126mil > 100mil) : Via (120mil,3165mil) Top Layer to Bottom Layer
+Rule Violations :4
+
+Processing Rule : Hole To Hole Clearance (Gap=10mil) (All),(All)
+Rule Violations :0
+
+Processing Rule : Minimum Solder Mask Sliver (Gap=10mil) (All),(All)
+Rule Violations :0
+
+Processing Rule : Silk To Solder Mask (Clearance=0mil) (IsPad),(All)
+Rule Violations :0
+
+Processing Rule : Silk to Silk (Clearance=0mil) (All),(All)
+Rule Violations :0
+
+Processing Rule : Silk primitive without silk layer
+   Violation between Silk To Board Region Clearance (Out of silkscreen region) : Text "ping" (1521.5mil,-77.5mil)  Top Overlay
+   Violation between Silk To Board Region Clearance (Out of silkscreen region) : Text "Header 6" (2536.5mil,-48.5mil)  Top Overlay
+Rule Violations :2
+
+Processing Rule : Net Antennae (Tolerance=0mil) (All)
+Rule Violations :0
+
+
+Violations Detected : 6
+Time Elapsed        : 00:00:01
