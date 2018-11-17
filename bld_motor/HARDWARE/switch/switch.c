@@ -49,8 +49,8 @@ void DRV_SWITCH_X_Init(void)
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
 	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
 	
 	GPIO_Init(GPIOD, &GPIO_InitStructure);
 	
@@ -271,10 +271,13 @@ void EXTI9_5_IRQHandler(void)
 	}
 	else if(EXTI_GetITStatus(EXTI_Line6) != RESET)   //光电开关
 	{		
-		motor_temp.motor_type = MOTOR_X;
-		motor_temp.switch_protect = 1;
-		DRV_motor_set_switch(motor_temp);
-		motor_temp.switch_protect = 0;
+		if(GPIO_ReadInputDataBit(GPIOD,GPIO_Pin_6) == 1)
+		{
+			motor_temp.motor_type = MOTOR_X;
+			motor_temp.switch_protect = 1;
+			DRV_motor_set_switch(motor_temp);
+			motor_temp.switch_protect = 0;
+		}
 		EXTI_ClearITPendingBit(EXTI_Line6);//清除LINE6上的中断标志位 
 	}
 	else if(EXTI_GetITStatus(EXTI_Line7) != RESET)
@@ -441,6 +444,7 @@ void DRV_switch_deal(CONTROL *control)
 	else if(control->motor_x->switch_protect == 1)
 	{
 		control->motor_x->switch_protect = 0;
+		if(GPIO_ReadInputDataBit(GPIOD,GPIO_Pin_6) == 1)
 		if(control->motor_x->motor_dir != MOTOR_POSTIVE)
 		{
 			control->motor_x->status = STATUS_STOP;
