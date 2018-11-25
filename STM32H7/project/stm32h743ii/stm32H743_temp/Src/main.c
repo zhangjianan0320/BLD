@@ -53,11 +53,12 @@
 #include "adc.h"
 #include "crc.h"
 #include "dac.h"
-#include "fdcan.h"
+#include "fatfs.h"
+#include "mdma.h"
+#include "sdmmc.h"
 #include "tim.h"
 #include "usart.h"
 #include "gpio.h"
-#include "fmc.h"
 
 /* USER CODE BEGIN Includes */
 extern int gUsartRecive[10];
@@ -81,6 +82,16 @@ void MX_FREERTOS_Init(void);
 
 /* USER CODE BEGIN 0 */
 
+/*******************************************   
+*			usart1 debug print
+********************************************/
+int fputc(int ch,FILE *f) 
+{  
+
+  	HAL_UART_Transmit(&huart1, (uint8_t *)&ch,1, 0xFFFF);
+  	return ch;
+  		
+}
 /* USER CODE END 0 */
 
 /**
@@ -91,7 +102,6 @@ void MX_FREERTOS_Init(void);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
   /* USER CODE END 1 */
 
   /* Enable D-Cache-------------------------------------------------------------*/
@@ -115,13 +125,12 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_MDMA_Init();
   MX_CRC_Init();
-  MX_FMC_Init();
   MX_ADC1_Init();
   MX_ADC2_Init();
   MX_ADC3_Init();
   MX_DAC1_Init();
-  MX_FDCAN1_Init();
   MX_TIM1_Init();
   MX_TIM2_Init();
   MX_TIM3_Init();
@@ -136,7 +145,8 @@ int main(void)
   MX_TIM16_Init();
   MX_TIM17_Init();
   MX_USART1_UART_Init();
-//  MX_UART5_Init();
+  MX_UART5_Init();
+  MX_SDMMC1_SD_Init();
   /* USER CODE BEGIN 2 */
   while(HAL_UART_Receive_IT(&huart1, (uint8_t *)aUsart1RxBuffer, 1) != HAL_OK);
 //  while(HAL_UART_Receive_IT(&huart5, (uint8_t *)aUsart5RxBuffer, 1) != HAL_OK);
@@ -228,9 +238,8 @@ void SystemClock_Config(void)
     _Error_Handler(__FILE__, __LINE__);
   }
 
-  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_FDCAN|RCC_PERIPHCLK_USART1
-                              |RCC_PERIPHCLK_UART5|RCC_PERIPHCLK_ADC
-                              |RCC_PERIPHCLK_FMC;
+  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_USART1|RCC_PERIPHCLK_UART5
+                              |RCC_PERIPHCLK_SDMMC|RCC_PERIPHCLK_ADC;
   PeriphClkInitStruct.PLL2.PLL2M = 1;
   PeriphClkInitStruct.PLL2.PLL2N = 19;
   PeriphClkInitStruct.PLL2.PLL2P = 1;
@@ -239,8 +248,7 @@ void SystemClock_Config(void)
   PeriphClkInitStruct.PLL2.PLL2RGE = RCC_PLL2VCIRANGE_3;
   PeriphClkInitStruct.PLL2.PLL2VCOSEL = RCC_PLL2VCOMEDIUM;
   PeriphClkInitStruct.PLL2.PLL2FRACN = 0;
-  PeriphClkInitStruct.FmcClockSelection = RCC_FMCCLKSOURCE_D1HCLK;
-  PeriphClkInitStruct.FdcanClockSelection = RCC_FDCANCLKSOURCE_PLL;
+  PeriphClkInitStruct.SdmmcClockSelection = RCC_SDMMCCLKSOURCE_PLL;
   PeriphClkInitStruct.Usart234578ClockSelection = RCC_USART234578CLKSOURCE_D2PCLK1;
   PeriphClkInitStruct.Usart16ClockSelection = RCC_USART16CLKSOURCE_D2PCLK2;
   PeriphClkInitStruct.AdcClockSelection = RCC_ADCCLKSOURCE_PLL2;

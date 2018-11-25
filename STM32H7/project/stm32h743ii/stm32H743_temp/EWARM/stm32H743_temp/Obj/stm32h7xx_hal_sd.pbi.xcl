@@ -15,6 +15,14 @@ F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM/../Drivers/CMSIS/D
 -I
 F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM/../Drivers/CMSIS/Include
 -I
+F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM/../Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM7/r0p1
+-I
+F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM/../Middlewares/Third_Party/FreeRTOS/Source/include
+-I
+F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM/../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS
+-I
+F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM/../Middlewares/Third_Party/FatFs/src
+-I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.1\arm\CMSIS\Core\Include
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.1\arm\CMSIS\DSP\Include
@@ -32,6 +40,14 @@ F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\Drivers\STM32H7xx_HAL_Dr
 F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\Drivers\CMSIS\Device\ST\STM32H7xx\Include
 -I
 F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\Drivers\CMSIS\Include
+-I
+F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\Middlewares\Third_Party\FreeRTOS\Source\portable\IAR\ARM_CM7\r0p1
+-I
+F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\Middlewares\Third_Party\FreeRTOS\Source\include
+-I
+F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS
+-I
+F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\Middlewares\Third_Party\FatFs\src
 -I
 C:\Program Files (x86)\IAR Systems\Embedded Workbench 8.1\arm\CMSIS\Core\Include
 -I

@@ -350,6 +350,7 @@
           <state>$PROJ_DIR$/../Middlewares/Third_Party/FreeRTOS/Source/portable/IAR/ARM_CM7/r0p1</state>
           <state>$PROJ_DIR$/../Middlewares/Third_Party/FreeRTOS/Source/include</state>
           <state>$PROJ_DIR$/../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS</state>
+          <state>$PROJ_DIR$/../Middlewares/Third_Party/FatFs/src</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -1050,13 +1051,22 @@
         <name>$PROJ_DIR$/../Src/dac.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Src/fdcan.c</name>
+        <name>$PROJ_DIR$/../Src/bsp_driver_sd.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Src/fmc.c</name>
+        <name>$PROJ_DIR$/../Src/sd_diskio.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$/../Src/fatfs.c</name>
       </file>
       <file>
         <name>$PROJ_DIR$/../Src/freertos.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$/../Src/mdma.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$/../Src/sdmmc.c</name>
       </file>
       <file>
         <name>$PROJ_DIR$/../Src/tim.c</name>
@@ -1101,19 +1111,16 @@
         <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_dac_ex.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_fdcan.c</name>
+        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_fmc.c</name>
+        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_delayblock.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sram.c</name>
+        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_nand.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sdram.c</name>
+        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd_ex.c</name>
       </file>
       <file>
         <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c</name>
@@ -1210,6 +1217,24 @@
       </file>
       <file>
         <name>$PROJ_DIR$/../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c</name>
+      </file>
+    </group>
+    <group>
+      <name>FatFs</name>
+      <file>
+        <name>$PROJ_DIR$/../Middlewares/Third_Party/FatFs/src/option/syscall.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$/../Middlewares/Third_Party/FatFs/src/option/cc936.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$/../Middlewares/Third_Party/FatFs/src/diskio.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$/../Middlewares/Third_Party/FatFs/src/ff.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$/../Middlewares/Third_Party/FatFs/src/ff_gen_drv.c</name>
       </file>
     </group>
   </group>

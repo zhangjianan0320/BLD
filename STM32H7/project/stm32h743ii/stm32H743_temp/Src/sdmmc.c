@@ -1,8 +1,8 @@
 /**
   ******************************************************************************
-  * File Name          : FDCAN.c
+  * File Name          : SDMMC.c
   * Description        : This file provides code for the configuration
-  *                      of the FDCAN instances.
+  *                      of the SDMMC instances.
   ******************************************************************************
   * This notice applies to any and all portions of this file
   * that are not between comment pairs USER CODE BEGIN and
@@ -48,7 +48,7 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "fdcan.h"
+#include "sdmmc.h"
 
 #include "gpio.h"
 
@@ -56,115 +56,95 @@
 
 /* USER CODE END 0 */
 
-FDCAN_HandleTypeDef hfdcan1;
+SD_HandleTypeDef hsd1;
 
-/* FDCAN1 init function */
-void MX_FDCAN1_Init(void)
+/* SDMMC1 init function */
+
+void MX_SDMMC1_SD_Init(void)
 {
 
-  hfdcan1.Instance = FDCAN1;
-  hfdcan1.Init.FrameFormat = FDCAN_FRAME_FD_NO_BRS;
-  hfdcan1.Init.Mode = FDCAN_MODE_NORMAL;
-  hfdcan1.Init.AutoRetransmission = DISABLE;
-  hfdcan1.Init.TransmitPause = DISABLE;
-  hfdcan1.Init.NominalPrescaler = 1;
-  hfdcan1.Init.NominalSyncJumpWidth = 1;
-  hfdcan1.Init.NominalTimeSeg1 = 2;
-  hfdcan1.Init.NominalTimeSeg2 = 2;
-  hfdcan1.Init.DataPrescaler = 1;
-  hfdcan1.Init.DataSyncJumpWidth = 1;
-  hfdcan1.Init.DataTimeSeg1 = 1;
-  hfdcan1.Init.DataTimeSeg2 = 1;
-  hfdcan1.Init.MessageRAMOffset = 0;
-  hfdcan1.Init.StdFiltersNbr = 0;
-  hfdcan1.Init.ExtFiltersNbr = 0;
-  hfdcan1.Init.RxFifo0ElmtsNbr = 0;
-  hfdcan1.Init.RxFifo0ElmtSize = FDCAN_DATA_BYTES_8;
-  hfdcan1.Init.RxFifo1ElmtsNbr = 0;
-  hfdcan1.Init.RxFifo1ElmtSize = FDCAN_DATA_BYTES_8;
-  hfdcan1.Init.RxBuffersNbr = 0;
-  hfdcan1.Init.RxBufferSize = FDCAN_DATA_BYTES_8;
-  hfdcan1.Init.TxEventsNbr = 0;
-  hfdcan1.Init.TxBuffersNbr = 0;
-  hfdcan1.Init.TxFifoQueueElmtsNbr = 0;
-  hfdcan1.Init.TxFifoQueueMode = FDCAN_TX_FIFO_OPERATION;
-  hfdcan1.Init.TxElmtSize = FDCAN_DATA_BYTES_8;
-  hfdcan1.msgRam.StandardFilterSA = 0;
-  hfdcan1.msgRam.ExtendedFilterSA = 0;
-  hfdcan1.msgRam.RxFIFO0SA = 0;
-  hfdcan1.msgRam.RxFIFO1SA = 0;
-  hfdcan1.msgRam.RxBufferSA = 0;
-  hfdcan1.msgRam.TxEventFIFOSA = 0;
-  hfdcan1.msgRam.TxBufferSA = 0;
-  hfdcan1.msgRam.TxFIFOQSA = 0;
-  hfdcan1.msgRam.TTMemorySA = 0;
-  hfdcan1.msgRam.EndAddress = 0;
-  hfdcan1.ErrorCode = 0;
-  if (HAL_FDCAN_Init(&hfdcan1) != HAL_OK)
-  {
-    _Error_Handler(__FILE__, __LINE__);
-  }
+  hsd1.Instance = SDMMC1;
+  hsd1.Init.ClockEdge = SDMMC_CLOCK_EDGE_RISING;
+  hsd1.Init.ClockPowerSave = SDMMC_CLOCK_POWER_SAVE_DISABLE;
+  hsd1.Init.BusWide = SDMMC_BUS_WIDE_4B;
+  hsd1.Init.HardwareFlowControl = SDMMC_HARDWARE_FLOW_CONTROL_DISABLE;
+  hsd1.Init.ClockDiv = 0;
 
 }
 
-void HAL_FDCAN_MspInit(FDCAN_HandleTypeDef* fdcanHandle)
+void HAL_SD_MspInit(SD_HandleTypeDef* sdHandle)
 {
 
   GPIO_InitTypeDef GPIO_InitStruct;
-  if(fdcanHandle->Instance==FDCAN1)
+  if(sdHandle->Instance==SDMMC1)
   {
-  /* USER CODE BEGIN FDCAN1_MspInit 0 */
+  /* USER CODE BEGIN SDMMC1_MspInit 0 */
 
-  /* USER CODE END FDCAN1_MspInit 0 */
-    /* FDCAN1 clock enable */
-    __HAL_RCC_FDCAN_CLK_ENABLE();
+  /* USER CODE END SDMMC1_MspInit 0 */
+    /* SDMMC1 clock enable */
+    __HAL_RCC_SDMMC1_CLK_ENABLE();
   
-    /**FDCAN1 GPIO Configuration    
-    PI9     ------> FDCAN1_RX
-    PH13     ------> FDCAN1_TX 
+    /**SDMMC1 GPIO Configuration    
+    PC8     ------> SDMMC1_D0
+    PC9     ------> SDMMC1_D1
+    PC10     ------> SDMMC1_D2
+    PC11     ------> SDMMC1_D3
+    PC12     ------> SDMMC1_CK
+    PD2     ------> SDMMC1_CMD 
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_9;
+    GPIO_InitStruct.Pin = GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11 
+                          |GPIO_PIN_12;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF9_FDCAN1;
-    HAL_GPIO_Init(GPIOI, &GPIO_InitStruct);
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+    GPIO_InitStruct.Alternate = GPIO_AF12_SDIO1;
+    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-    GPIO_InitStruct.Pin = GPIO_PIN_13;
+    GPIO_InitStruct.Pin = GPIO_PIN_2;
     GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-    GPIO_InitStruct.Alternate = GPIO_AF9_FDCAN1;
-    HAL_GPIO_Init(GPIOH, &GPIO_InitStruct);
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+    GPIO_InitStruct.Alternate = GPIO_AF12_SDIO1;
+    HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
-  /* USER CODE BEGIN FDCAN1_MspInit 1 */
+    /* SDMMC1 interrupt Init */
+    HAL_NVIC_SetPriority(SDMMC1_IRQn, 5, 0);
+    HAL_NVIC_EnableIRQ(SDMMC1_IRQn);
+  /* USER CODE BEGIN SDMMC1_MspInit 1 */
 
-  /* USER CODE END FDCAN1_MspInit 1 */
+  /* USER CODE END SDMMC1_MspInit 1 */
   }
 }
 
-void HAL_FDCAN_MspDeInit(FDCAN_HandleTypeDef* fdcanHandle)
+void HAL_SD_MspDeInit(SD_HandleTypeDef* sdHandle)
 {
 
-  if(fdcanHandle->Instance==FDCAN1)
+  if(sdHandle->Instance==SDMMC1)
   {
-  /* USER CODE BEGIN FDCAN1_MspDeInit 0 */
+  /* USER CODE BEGIN SDMMC1_MspDeInit 0 */
 
-  /* USER CODE END FDCAN1_MspDeInit 0 */
+  /* USER CODE END SDMMC1_MspDeInit 0 */
     /* Peripheral clock disable */
-    __HAL_RCC_FDCAN_CLK_DISABLE();
+    __HAL_RCC_SDMMC1_CLK_DISABLE();
   
-    /**FDCAN1 GPIO Configuration    
-    PI9     ------> FDCAN1_RX
-    PH13     ------> FDCAN1_TX 
+    /**SDMMC1 GPIO Configuration    
+    PC8     ------> SDMMC1_D0
+    PC9     ------> SDMMC1_D1
+    PC10     ------> SDMMC1_D2
+    PC11     ------> SDMMC1_D3
+    PC12     ------> SDMMC1_CK
+    PD2     ------> SDMMC1_CMD 
     */
-    HAL_GPIO_DeInit(GPIOI, GPIO_PIN_9);
+    HAL_GPIO_DeInit(GPIOC, GPIO_PIN_8|GPIO_PIN_9|GPIO_PIN_10|GPIO_PIN_11 
+                          |GPIO_PIN_12);
 
-    HAL_GPIO_DeInit(GPIOH, GPIO_PIN_13);
+    HAL_GPIO_DeInit(GPIOD, GPIO_PIN_2);
 
-  /* USER CODE BEGIN FDCAN1_MspDeInit 1 */
+    /* SDMMC1 interrupt Deinit */
+    HAL_NVIC_DisableIRQ(SDMMC1_IRQn);
+  /* USER CODE BEGIN SDMMC1_MspDeInit 1 */
 
-  /* USER CODE END FDCAN1_MspDeInit 1 */
+  /* USER CODE END SDMMC1_MspDeInit 1 */
   }
 } 
 

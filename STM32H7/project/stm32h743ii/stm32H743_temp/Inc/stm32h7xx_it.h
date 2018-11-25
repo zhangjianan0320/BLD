@@ -56,6 +56,7 @@ void DebugMon_Handler(void);
 void SysTick_Handler(void);
 void TIM3_IRQHandler(void);
 void USART1_IRQHandler(void);
+void SDMMC1_IRQHandler(void);
 void UART5_IRQHandler(void);
 void TIM6_DAC_IRQHandler(void);
 

@@ -57,10 +57,20 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */     
 #include "usart.h"
+#include "ff.h"
+#include "fatfs.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
+FATFS fs;                 // Work area (file system object) for logical drive
+FIL fil;                  // file objects
+  
+uint32_t byteswritten;                /* File write counts */
+uint32_t bytesread;                   /* File read counts */
+uint8_t wtext[] = "This is STM32 working with FatFs"; /* File write buffer */
+uint8_t rtext[100];                     /* File read buffers */
+char filename[] = "STM32cube.txt";
 
 /* USER CODE END PTD */
 
@@ -80,6 +90,8 @@
 /* USER CODE END Variables */
 osThreadId defaultTaskHandle;
 osThreadId myTaskUsartSentHandle;
+osThreadId myTaskWriteDiskHandle;
+osThreadId myTaskReadDiskHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -88,7 +100,10 @@ osThreadId myTaskUsartSentHandle;
 
 void StartDefaultTask(void const * argument);
 void UsartSent(void const * argument);
+void WriteDisk(void const * argument);
+void ReadDisk(void const * argument);
 
+extern void MX_FATFS_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /**
@@ -122,6 +137,14 @@ void MX_FREERTOS_Init(void) {
   osThreadDef(myTaskUsartSent, UsartSent, osPriorityIdle, 0, 128);
   myTaskUsartSentHandle = osThreadCreate(osThread(myTaskUsartSent), NULL);
 
+  /* definition and creation of myTaskWriteDisk */
+  osThreadDef(myTaskWriteDisk, WriteDisk, osPriorityIdle, 0, 128);
+  myTaskWriteDiskHandle = osThreadCreate(osThread(myTaskWriteDisk), NULL);
+
+  /* definition and creation of myTaskReadDisk */
+  osThreadDef(myTaskReadDisk, ReadDisk, osPriorityIdle, 0, 128);
+  myTaskReadDiskHandle = osThreadCreate(osThread(myTaskReadDisk), NULL);
+
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -140,8 +163,75 @@ void MX_FREERTOS_Init(void) {
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void const * argument)
 {
+  /* init code for FATFS */
+  MX_FATFS_Init();
 
   /* USER CODE BEGIN StartDefaultTask */
+      PrintToPC("\r\n ****** FatFs Example ******\r\n\r\n");
+      retSD = f_mount(NULL, "", 0);
+    /*##-1- Register the file system object to the FatFs module ##############*/
+    retSD = f_mount(&fs, SDPath, 0);
+    if(retSD)
+    {
+        PrintToPC(" mount error : %d \r\n");
+        Error_Handler();
+    }
+    else
+        PrintToPC(" mount sucess!!! \r\n");
+     
+    /*##-2- Create and Open new text file objects with write access ######*/
+    retSD = f_open(&fil, filename, FA_CREATE_ALWAYS | FA_WRITE);
+    if(retSD)
+        PrintToPC(" open file error : %d\r\n");
+    else
+        PrintToPC(" open file sucess!!! \r\n");
+     
+    /*##-3- Write data to the text files ###############################*/
+    retSD = f_write(&fil, wtext, sizeof(wtext), (void *)&byteswritten);
+    if(retSD)
+        PrintToPC(" write file error : %d\r\n");
+    else
+    {
+        PrintToPC(" write file sucess!!! \r\n");
+        PrintToPC(" write Data : %s\r\n");
+    }
+     
+    /*##-4- Close the open text files ################################*/
+    retSD = f_close(&fil);
+    if(retSD)
+        PrintToPC(" close error : %d\r\n");
+    else
+        PrintToPC(" close sucess!!! \r\n");
+     
+    /*##-5- Open the text files object with read access ##############*/
+    retSD = f_open(&fil, filename, FA_READ);
+    if(retSD)
+        PrintToPC(" open file error : %d\r\n");
+    else
+        PrintToPC(" open file sucess!!! \r\n");
+     
+    /*##-6- Read data from the text files ##########################*/
+    retSD = f_read(&fil, rtext, sizeof(rtext), (UINT*)&bytesread);
+    if(retSD)
+        PrintToPC(" read error!!! %d\r\n");
+    else
+    {
+        PrintToPC(" read sucess!!! \r\n");
+        PrintToPC(" read Data : %s\r\n");
+    }
+     
+    /*##-7- Close the open text files ############################*/
+    retSD = f_close(&fil);
+    if(retSD)  
+        PrintToPC(" close error!!! %d\r\n");
+    else
+        PrintToPC(" close sucess!!! \r\n");
+     
+    /*##-8- Compare read data with the expected data ############*/
+    if(bytesread == byteswritten)
+    { 
+        PrintToPC(" FatFs is working well!!!\r\n");
+    }
   /* Infinite loop */
   for(;;)
   {
@@ -167,6 +257,42 @@ void UsartSent(void const * argument)
     osDelay(1000);
   }
   /* USER CODE END UsartSent */
+}
+
+/* USER CODE BEGIN Header_WriteDisk */
+/**
+* @brief Function implementing the myTaskWriteDisk thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_WriteDisk */
+void WriteDisk(void const * argument)
+{
+  /* USER CODE BEGIN WriteDisk */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END WriteDisk */
+}
+
+/* USER CODE BEGIN Header_ReadDisk */
+/**
+* @brief Function implementing the myTaskReadDisk thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_ReadDisk */
+void ReadDisk(void const * argument)
+{
+  /* USER CODE BEGIN ReadDisk */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END ReadDisk */
 }
 
 /* Private application code --------------------------------------------------*/

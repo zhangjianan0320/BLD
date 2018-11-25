@@ -1,8 +1,8 @@
 /**
   ******************************************************************************
-  * File Name          : FMC.h
+  * File Name          : SDMMC.h
   * Description        : This file provides code for the configuration
-  *                      of the FMC peripheral.
+  *                      of the SDMMC instances.
   ******************************************************************************
   * This notice applies to any and all portions of this file
   * that are not between comment pairs USER CODE BEGIN and
@@ -47,8 +47,8 @@
   ******************************************************************************
   */
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __FMC_H
-#define __FMC_H
+#ifndef __sdmmc_H
+#define __sdmmc_H
 #ifdef __cplusplus
  extern "C" {
 #endif
@@ -61,23 +61,15 @@
 
 /* USER CODE END Includes */
 
-extern SRAM_HandleTypeDef hsram1;
-extern SRAM_HandleTypeDef hsram3;
-extern NAND_HandleTypeDef hnand1;
-extern SDRAM_HandleTypeDef hsdram1;
-extern void _Error_Handler(char *, int);
+extern SD_HandleTypeDef hsd1;
 
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
 
-void MX_FMC_Init(void);
-void HAL_SRAM_MspInit(SRAM_HandleTypeDef* hsram);
-void HAL_SRAM_MspDeInit(SRAM_HandleTypeDef* hsram);
-void HAL_NAND_MspInit(NAND_HandleTypeDef* hnand);
-void HAL_NAND_MspDeInit(NAND_HandleTypeDef* hnand);
-void HAL_SDRAM_MspInit(SDRAM_HandleTypeDef* hsdram);
-void HAL_SDRAM_MspDeInit(SDRAM_HandleTypeDef* hsdram);
+extern void _Error_Handler(char *, int);
+
+void MX_SDMMC1_SD_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 
@@ -86,7 +78,7 @@ void HAL_SDRAM_MspDeInit(SDRAM_HandleTypeDef* hsdram);
 #ifdef __cplusplus
 }
 #endif
-#endif /*__FMC_H */
+#endif /*__ sdmmc_H */
 
 /**
   * @}
