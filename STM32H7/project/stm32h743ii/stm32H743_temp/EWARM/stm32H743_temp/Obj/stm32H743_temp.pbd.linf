@@ -1,11 +1,19 @@
 ﻿F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\stm32H743_temp.pbd
 F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\adc.pbi
+F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\cmsis_os.pbi
 F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\crc.pbi
+F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\croutine.pbi
 F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\dac.pbi
+F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\event_groups.pbi
 F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\fdcan.pbi
 F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\fmc.pbi
+F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\freertos.pbi
 F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\gpio.pbi
+F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\heap_4.pbi
+F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\list.pbi
 F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\main.pbi
+F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\port.pbi
+F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\queue.pbi
 F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\stm32h7xx_hal.pbi
 F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\stm32h7xx_hal_adc.pbi
 F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\stm32h7xx_hal_adc_ex.pbi
@@ -40,5 +48,7 @@ F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj
 F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\stm32h7xx_it.pbi
 F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\stm32h7xx_ll_fmc.pbi
 F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\system_stm32h7xx.pbi
+F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\tasks.pbi
 F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\tim.pbi
+F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\timers.pbi
 F:\other\bld\STM32H7\project\stm32h743ii\stm32H743_temp\EWARM\stm32H743_temp\Obj\usart.pbi
