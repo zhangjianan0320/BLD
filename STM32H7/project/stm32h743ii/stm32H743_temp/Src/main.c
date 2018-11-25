@@ -43,18 +43,13 @@
 #include "crc.h"
 #include "dac.h"
 #include "fdcan.h"
-#include "lptim.h"
-#include "sai.h"
-#include "sdmmc.h"
-#include "spi.h"
 #include "tim.h"
 #include "usart.h"
-#include "usb_otg.h"
 #include "gpio.h"
 #include "fmc.h"
 
 /* USER CODE BEGIN Includes */
-
+extern int gUsartRecive[10];
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -108,11 +103,6 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_LPTIM1_Init();
-  MX_LPTIM2_Init();
-  MX_LPTIM3_Init();
-  MX_LPTIM4_Init();
-  MX_LPTIM5_Init();
   MX_CRC_Init();
   MX_FMC_Init();
   MX_ADC1_Init();
@@ -120,12 +110,6 @@ int main(void)
   MX_ADC3_Init();
   MX_DAC1_Init();
   MX_FDCAN1_Init();
-  MX_SAI1_Init();
-  MX_SDMMC1_SD_Init();
-  MX_SPI1_Init();
-  MX_SPI2_Init();
-  MX_SPI3_Init();
-  MX_SPI4_Init();
   MX_TIM1_Init();
   MX_TIM2_Init();
   MX_TIM3_Init();
@@ -139,23 +123,23 @@ int main(void)
   MX_TIM15_Init();
   MX_TIM16_Init();
   MX_TIM17_Init();
-  MX_UART5_Init();
   MX_USART1_UART_Init();
-  MX_USART3_UART_Init();
-  MX_USB_OTG_FS_HCD_Init();
+  MX_UART5_Init();
   /* USER CODE BEGIN 2 */
-
+  while(HAL_UART_Receive_IT(&huart1, (uint8_t *)aUsart1RxBuffer, 1) != HAL_OK);
+  while(HAL_UART_Receive_IT(&huart5, (uint8_t *)aUsart5RxBuffer, 1) != HAL_OK);
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
+//    HAL_UART_Transmit(&huart1,(uint8_t*)gUsartRecive, 1,1000);
+//    while(__HAL_UART_GET_FLAG(&huart1,UART_FLAG_TC)!=SET);
   /* USER CODE END WHILE */
 
-  /* USER CODE BEGIN 3 */
-
+  /* USER CODE BEGIN 3 */ 
+    UsartSend();
   }
   /* USER CODE END 3 */
 
@@ -178,7 +162,7 @@ void SystemClock_Config(void)
 
     /**Configure the main internal regulator output voltage 
     */
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
 
   while ((PWR->D3CR & (PWR_D3CR_VOSRDY)) != PWR_D3CR_VOSRDY) 
   {
@@ -190,18 +174,16 @@ void SystemClock_Config(void)
 
     /**Initializes the CPU, AHB and APB busses clocks 
     */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
-  RCC_OscInitStruct.HSIState = RCC_HSI_DIV1;
-  RCC_OscInitStruct.HSICalibrationValue = 16;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 1;
-  RCC_OscInitStruct.PLL.PLLN = 24;
+  RCC_OscInitStruct.PLL.PLLM = 2;
+  RCC_OscInitStruct.PLL.PLLN = 200;
   RCC_OscInitStruct.PLL.PLLP = 2;
   RCC_OscInitStruct.PLL.PLLQ = 4;
   RCC_OscInitStruct.PLL.PLLR = 2;
-  RCC_OscInitStruct.PLL.PLLRGE = RCC_PLL1VCIRANGE_3;
+  RCC_OscInitStruct.PLL.PLLRGE = RCC_PLL1VCIRANGE_2;
   RCC_OscInitStruct.PLL.PLLVCOSEL = RCC_PLL1VCOWIDE;
   RCC_OscInitStruct.PLL.PLLFRACN = 0;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
@@ -216,26 +198,20 @@ void SystemClock_Config(void)
                               |RCC_CLOCKTYPE_D3PCLK1|RCC_CLOCKTYPE_D1PCLK1;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.SYSCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_HCLK_DIV1;
-  RCC_ClkInitStruct.APB3CLKDivider = RCC_APB3_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_APB1_DIV1;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_APB2_DIV1;
-  RCC_ClkInitStruct.APB4CLKDivider = RCC_APB4_DIV1;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB3CLKDivider = RCC_APB3_DIV2;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_APB1_DIV2;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_APB2_DIV2;
+  RCC_ClkInitStruct.APB4CLKDivider = RCC_APB4_DIV2;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
 
-  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_USART3|RCC_PERIPHCLK_FDCAN
-                              |RCC_PERIPHCLK_USART1|RCC_PERIPHCLK_UART5
-                              |RCC_PERIPHCLK_SPI4|RCC_PERIPHCLK_SPI3
-                              |RCC_PERIPHCLK_SPI1|RCC_PERIPHCLK_SPI2
-                              |RCC_PERIPHCLK_SAI1|RCC_PERIPHCLK_SDMMC
-                              |RCC_PERIPHCLK_LPTIM2|RCC_PERIPHCLK_LPTIM5
-                              |RCC_PERIPHCLK_ADC|RCC_PERIPHCLK_LPTIM3
-                              |RCC_PERIPHCLK_LPTIM4|RCC_PERIPHCLK_USB
-                              |RCC_PERIPHCLK_LPTIM1|RCC_PERIPHCLK_FMC;
+  PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_FDCAN|RCC_PERIPHCLK_USART1
+                              |RCC_PERIPHCLK_UART5|RCC_PERIPHCLK_ADC
+                              |RCC_PERIPHCLK_FMC;
   PeriphClkInitStruct.PLL2.PLL2M = 1;
   PeriphClkInitStruct.PLL2.PLL2N = 19;
   PeriphClkInitStruct.PLL2.PLL2P = 1;
@@ -245,24 +221,14 @@ void SystemClock_Config(void)
   PeriphClkInitStruct.PLL2.PLL2VCOSEL = RCC_PLL2VCOMEDIUM;
   PeriphClkInitStruct.PLL2.PLL2FRACN = 0;
   PeriphClkInitStruct.FmcClockSelection = RCC_FMCCLKSOURCE_D1HCLK;
-  PeriphClkInitStruct.SdmmcClockSelection = RCC_SDMMCCLKSOURCE_PLL;
-  PeriphClkInitStruct.Sai1ClockSelection = RCC_SAI1CLKSOURCE_PLL;
-  PeriphClkInitStruct.Spi123ClockSelection = RCC_SPI123CLKSOURCE_PLL;
-  PeriphClkInitStruct.Spi45ClockSelection = RCC_SPI45CLKSOURCE_D2PCLK1;
   PeriphClkInitStruct.FdcanClockSelection = RCC_FDCANCLKSOURCE_PLL;
   PeriphClkInitStruct.Usart234578ClockSelection = RCC_USART234578CLKSOURCE_D2PCLK1;
   PeriphClkInitStruct.Usart16ClockSelection = RCC_USART16CLKSOURCE_D2PCLK2;
-  PeriphClkInitStruct.UsbClockSelection = RCC_USBCLKSOURCE_PLL;
-  PeriphClkInitStruct.Lptim1ClockSelection = RCC_LPTIM1CLKSOURCE_D2PCLK1;
-  PeriphClkInitStruct.Lptim2ClockSelection = RCC_LPTIM2CLKSOURCE_D3PCLK1;
-  PeriphClkInitStruct.Lptim345ClockSelection = RCC_LPTIM345CLKSOURCE_D3PCLK1;
   PeriphClkInitStruct.AdcClockSelection = RCC_ADCCLKSOURCE_PLL2;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
-
-  HAL_RCC_MCOConfig(RCC_MCO1, RCC_MCO1SOURCE_HSI, RCC_MCODIV_1);
 
     /**Configure the Systick interrupt time 
     */

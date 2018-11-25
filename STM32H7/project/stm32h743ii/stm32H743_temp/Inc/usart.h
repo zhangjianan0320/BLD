@@ -53,20 +53,22 @@
 
 extern UART_HandleTypeDef huart5;
 extern UART_HandleTypeDef huart1;
-extern UART_HandleTypeDef huart3;
 
 /* USER CODE BEGIN Private defines */
+#define RXBUFFERSIZE    10
 
+extern char aUsart1RxBuffer[RXBUFFERSIZE];
+extern char aUsart5RxBuffer[RXBUFFERSIZE];
+extern int gUsart1Recive[10];
 /* USER CODE END Private defines */
 
 extern void _Error_Handler(char *, int);
 
 void MX_UART5_Init(void);
 void MX_USART1_UART_Init(void);
-void MX_USART3_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-
+void UsartSend(void);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

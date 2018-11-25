@@ -41,8 +41,8 @@
 
 /* External variables --------------------------------------------------------*/
 extern DAC_HandleTypeDef hdac1;
-extern SAI_HandleTypeDef hsai_BlockA1;
 extern TIM_HandleTypeDef htim3;
+extern UART_HandleTypeDef huart5;
 extern UART_HandleTypeDef huart1;
 
 extern TIM_HandleTypeDef htim6;
@@ -225,6 +225,20 @@ void USART1_IRQHandler(void)
 }
 
 /**
+* @brief This function handles UART5 global interrupt.
+*/
+void UART5_IRQHandler(void)
+{
+  /* USER CODE BEGIN UART5_IRQn 0 */
+
+  /* USER CODE END UART5_IRQn 0 */
+  HAL_UART_IRQHandler(&huart5);
+  /* USER CODE BEGIN UART5_IRQn 1 */
+
+  /* USER CODE END UART5_IRQn 1 */
+}
+
+/**
 * @brief This function handles TIM6 global interrupt, DAC1_CH1 and DAC1_CH2 underrun error interrupts.
 */
 void TIM6_DAC_IRQHandler(void)
@@ -237,20 +251,6 @@ void TIM6_DAC_IRQHandler(void)
   /* USER CODE BEGIN TIM6_DAC_IRQn 1 */
 
   /* USER CODE END TIM6_DAC_IRQn 1 */
-}
-
-/**
-* @brief This function handles SAI1 global interrupt.
-*/
-void SAI1_IRQHandler(void)
-{
-  /* USER CODE BEGIN SAI1_IRQn 0 */
-
-  /* USER CODE END SAI1_IRQn 0 */
-  
-  /* USER CODE BEGIN SAI1_IRQn 1 */
-
-  /* USER CODE END SAI1_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

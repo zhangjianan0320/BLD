@@ -1053,25 +1053,10 @@
         <name>$PROJ_DIR$/../Src/fmc.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Src/lptim.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Src/sai.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Src/sdmmc.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Src/spi.c</name>
-      </file>
-      <file>
         <name>$PROJ_DIR$/../Src/tim.c</name>
       </file>
       <file>
         <name>$PROJ_DIR$/../Src/usart.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Src/usb_otg.c</name>
       </file>
       <file>
         <name>$PROJ_DIR$/../Src/stm32h7xx_it.c</name>
@@ -1125,33 +1110,6 @@
         <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sdram.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_lptim.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sai.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sai_ex.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_sdmmc.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_delayblock.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_sd_ex.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_spi_ex.c</name>
-      </file>
-      <file>
         <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_tim.c</name>
       </file>
       <file>
@@ -1162,12 +1120,6 @@
       </file>
       <file>
         <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_uart_ex.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_hcd.c</name>
-      </file>
-      <file>
-        <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_ll_usb.c</name>
       </file>
       <file>
         <name>$PROJ_DIR$/../Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_rcc.c</name>
